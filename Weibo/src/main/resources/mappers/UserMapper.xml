@@ -5,11 +5,31 @@
 
 <mapper namespace="com.tedu.weibo.mapper.user.UserMapper">
 
-    <select id="selectUserByUsername" resultType="com.tedu.weibo.pojo.entity.user.User"><!--查找用户-->
-        SELECT id, username, nickname, password, created
+    <select id="selectAllUsers"><!--查询所有用户-->
+        SELECT *
         FROM user
-        WHERE username=#{userName} AND password=#{password}
     </select>
+
+    <select id="selectUser" parameterType="com.tedu.weibo.pojo.entity.user.User" resultType="com.tedu.weibo.pojo.entity.user.User"><!--查找用户-->
+        SELECT id, username, nickname, age, password, created
+        FROM user
+        WHERE true
+        <if test="id!=null">AND id=#{id}</if>
+        <if test="userName!=null">AND username=#{userName}</if>
+        <if test="nickName!=null">AND nickname=#{nickName}</if>
+        <if test="password!=null">AND password=#{password}</if>
+        <if test="created!=null">AND created=#{created}</if>
+    </select>
+
+    <update id="updateUser" parameterType="com.tedu.weibo.pojo.entity.user.User"><!--修改用户-->
+        UPDATE user
+        <set>
+            <if test="userName!=null">username=#{userName},</if>
+            <if test="nickName!=null">nickname=#{nickName},</if>
+            <if test="password!=null">password=#{password},</if>
+        </set>
+        WHERE id=#{id}
+    </update>
 
     <insert id="addUser" parameterType="com.tedu.weibo.pojo.entity.user.User"><!--添加用户-->
         INSERT
@@ -17,9 +37,15 @@
         VALUES (#{userName},#{nickName},#{password},#{created})
     </insert>
 
-    <select id="selectAllUsers"><!--查询所有用户-->
-        SELECT *
+    <delete id="deleteUser" parameterType="com.tedu.weibo.pojo.entity.user.User"><!--按照ID删除用户-->
+        DELETE
         FROM user
-    </select>
+        WHERE true
+        <if test="id!=null">AND id=#{id}</if>
+        <if test="userName!=null">AND username=#{userName}</if>
+        <if test="nickName!=null">AND nickname=#{nickName}</if>
+        <if test="password!=null">AND password=#{password}</if>
+        <if test="created!=null">AND created=#{created}</if>
+    </delete>
 
 </mapper>

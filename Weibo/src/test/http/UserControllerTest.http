@@ -1,10 +1,4 @@
-POST http://localhost:8080/v1/user/reg
-#请求头
-Content-Type: application/json
+POST http://localhost:8080/v1/user/deleteUserById/1
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "userName":"admin",
-  "nickName":"admin",
-  "password":"123456"
-}
-###
+id=1
