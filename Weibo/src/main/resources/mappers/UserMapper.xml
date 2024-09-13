@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tedu.weibo.mapper.user.UserMapper">
+
+    <select id="selectUserByUsername" resultType="com.tedu.weibo.pojo.entity.user.User"><!--查找用户-->
+        SELECT id, username, nickname, password, created
+        FROM user
+        WHERE username=#{userName} AND password=#{password}
+    </select>
+
+    <insert id="addUser" parameterType="com.tedu.weibo.pojo.entity.user.User"><!--添加用户-->
+        INSERT
+        INTO user(username,nickname,password,created)
+        VALUES (#{userName},#{nickName},#{password},#{created})
+    </insert>
+
+    <select id="selectAllUsers"><!--查询所有用户-->
+        SELECT *
+        FROM user
+    </select>
+
+</mapper>

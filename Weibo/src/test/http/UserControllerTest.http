@@ -1,0 +1,10 @@
+POST http://localhost:8080/v1/user/reg
+#请求头
+Content-Type: application/json
+
+{
+  "userName":"admin",
+  "nickName":"admin",
+  "password":"123456"
+}
+###

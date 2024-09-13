@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tedu.shopping.mapper.AddressMapper">
+
+    <insert id="addAddress" parameterType="com.tedu.shopping.pojo.entity.Address"><!--添加收货地址-->
+        INSERT
+        INTO address(receiver,address,email,mobile,tag)
+        VALUES (#{receiver},#{address},#{email},#{mobile},#{tag})
+    </insert>
+
+    <select id="selectAllAddress" resultType="com.tedu.shopping.pojo.entity.Address"><!--查询所有收货地址-->
+        SELECT *
+        FROM address
+    </select>
+
+    <delete id="deleteAddress"><!--删除收货地址-->
+        DELETE
+        FROM address
+        WHERE id=#{id}
+    </delete>
+
+    <update id="updateAddress" parameterType="com.tedu.shopping.pojo.entity.Address"><!--修改收货地址-->
+        UPDATE address
+        <set>
+            <if test="receiver!=null">receiver=#{receiver},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="email!=null">email=#{email},</if>
+            <if test="mobile!=null">mobile=#{mobile},</if>
+            <if test="type!=null">type=#{type}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+</mapper>

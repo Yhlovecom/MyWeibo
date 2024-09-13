@@ -1,21 +1,14 @@
 package com.tedu.weibo;
 
 import com.tedu.weibo.mapper.comment.CommentMapper;
-import com.tedu.weibo.mapper.weibo.WeiboMapper;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootTest
 @ComponentScan("com.tedu.weibo")
-class WeiboApplicationTests {
+public class CommentApplicationTests {//评论相关功能测试类
 
-    @Autowired
-    WeiboMapper weiboMapper;// 微博的mapper类，操作数据库中的weibo表
-
-    @Test
-    void contextLoads() {
-    }
-
+    @Autowired // 自动注入，便于调用数据库的操作方法
+    CommentMapper commentMapper;// 评论的mapper类，操作数据库中的comment表
 }
